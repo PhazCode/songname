@@ -8,6 +8,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.media.AudioAttributes;
+import android.media.AudioFocusRequest;
+import android.media.AudioManager;
 import android.os.Build;
 import android.os.IBinder;
 
@@ -26,6 +29,8 @@ public class SpotifyReceiverService extends Service {
     private NotificationManager mNotificationManager;
     private BroadcastReceiver receiver;
     private String currentTrack;
+
+
 
     @Nullable
     @Override
@@ -54,6 +59,7 @@ public class SpotifyReceiverService extends Service {
                         currentTrack = trackName;
 
                         boolean artist = prefs.getBoolean("artist", false);
+
                         if (artist)
                             speak(String.format(getString(R.string.next_song_by), trackName, artistName));
                         else
