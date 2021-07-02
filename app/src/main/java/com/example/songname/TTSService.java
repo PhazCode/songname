@@ -24,6 +24,7 @@ public class TTSService extends JobIntentService {
 
         mTextToSpeech = new TextToSpeech(getApplicationContext(), status -> {
             mTextToSpeech.setLanguage(Locale.US);
+            mTextToSpeech.setSpeechRate(0.8f);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 mTextToSpeech.speak(message, TextToSpeech.QUEUE_ADD, null, null);
