@@ -18,6 +18,7 @@ import static com.example.songname.App.notificationChannelID;
 public class SpotifyReceiverService extends Service {
     static final String SPOTIFY_PACKAGE = "com.spotify.music";
     static final String ACTION = SPOTIFY_PACKAGE + ".metadatachanged";
+    private static final String EXTRA_MESSAGE = "com.example.songname.MESSAGE";
     private static final String ACTION_STOP_SERVICE = "com.example.songname.ACTION_STOP_SERVICE";
     private final int NOTIFICATION_ID = 1;
     private NotificationManager mNotificationManager;
@@ -56,7 +57,7 @@ public class SpotifyReceiverService extends Service {
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(this, notificationChannelID)
                         .setContentTitle(getString(R.string.app_name))
-                        .setContentText("Is running")
+                        .setContentText(getString(R.string.notification_information))
                         .setSmallIcon(R.drawable.ic_stat_notification)
                         .setOngoing(true);
 
@@ -93,7 +94,7 @@ public class SpotifyReceiverService extends Service {
 
     private void TTS(String trackName) {
         Intent speechIntent = new Intent();
-        speechIntent.putExtra("MESSAGE", trackName);
+        speechIntent.putExtra(EXTRA_MESSAGE, trackName);
         TTSService.enqueueWork(this, speechIntent);
     }
 }
