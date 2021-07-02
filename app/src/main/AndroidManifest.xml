@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.songname">
+    package="com.phazcode.songname">
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
-        android:name=".App"
+        android:name="com.phazcode.songname.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -13,9 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Songname">
         <activity
-            android:name=".SettingsActivity"
+            android:name="com.phazcode.songname.SettingsActivity"
             android:label="@string/title_activity_settings"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name="com.phazcode.songname.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,10 +24,10 @@
         </activity>
 
         <service
-            android:name=".TTSService"
+            android:name="com.phazcode.songname.TTSService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
         <service
-            android:name=".SpotifyReceiverService"
+            android:name="com.phazcode.songname.SpotifyReceiverService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>
 

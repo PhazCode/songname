@@ -1,4 +1,4 @@
-package com.example.songname;
+package com.phazcode.songname;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -15,18 +15,17 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.preference.PreferenceManager;
 
-import static com.example.songname.App.notificationChannelID;
+import static com.phazcode.songname.App.notificationChannelID;
 
 public class SpotifyReceiverService extends Service {
     static final String SPOTIFY_PACKAGE = "com.spotify.music";
     static final String ACTION = SPOTIFY_PACKAGE + ".metadatachanged";
-    static final String EXTRA_MESSAGE = "com.example.songname.MESSAGE";
-    private static final String ACTION_STOP_SERVICE = "com.example.songname.ACTION_STOP_SERVICE";
+    static final String EXTRA_MESSAGE = "com.phazcode.songname.MESSAGE";
+    private static final String ACTION_STOP_SERVICE = "com.phazcode.songname.ACTION_STOP_SERVICE";
     private final int NOTIFICATION_ID = 1;
     private NotificationManager mNotificationManager;
     private BroadcastReceiver receiver;
     private String currentTrack;
-
 
     @Nullable
     @Override

@@ -1,4 +1,4 @@
-package com.example.songname;
+package com.phazcode.songname;
 
 import android.os.Bundle;
 
