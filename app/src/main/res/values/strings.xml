@@ -3,4 +3,6 @@
     <string name="listening">Listen for song changes</string>
     <string name="explanation">Now listening for Spotify song changes. Make sure to enable \'Device Broadcast Status\' from the Spotify settings.</string>
     <string name="notification_information">Is running</string>
+    <string name="action_stop">Stop</string>
+    <string name="next_song">Next song is %s</string>
 </resources>

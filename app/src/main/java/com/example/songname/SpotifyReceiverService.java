@@ -47,7 +47,7 @@ public class SpotifyReceiverService extends Service {
 
                     if (!trackName.equals(currentTrack)) {
                         currentTrack = trackName;
-                        TTS(trackName);
+                        TTS(String.format(getString(R.string.next_song), trackName));
                     }
                 }
             }
@@ -64,7 +64,7 @@ public class SpotifyReceiverService extends Service {
         Intent stopSelf = new Intent(this, SpotifyReceiverService.class);
         stopSelf.setAction(ACTION_STOP_SERVICE);
         PendingIntent pStopSelf = PendingIntent.getService(this, 0, stopSelf, PendingIntent.FLAG_CANCEL_CURRENT);
-        builder.addAction(R.drawable.ic_launcher_foreground, "Stop", pStopSelf);
+        builder.addAction(R.drawable.ic_launcher_foreground, getString(R.string.action_stop), pStopSelf);
 
         mNotificationManager = (NotificationManager)
                 this.getSystemService(Context.NOTIFICATION_SERVICE);
