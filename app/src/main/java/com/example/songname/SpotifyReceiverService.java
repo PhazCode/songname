@@ -55,9 +55,9 @@ public class SpotifyReceiverService extends Service {
 
                         boolean artist = prefs.getBoolean("artist", false);
                         if (artist)
-                            speak(String.format(getString(R.string.next_song), trackName));
-                        else
                             speak(String.format(getString(R.string.next_song_by), trackName, artistName));
+                        else
+                            speak(String.format(getString(R.string.next_song), trackName));
                     }
                 }
             }
