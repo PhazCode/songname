@@ -88,8 +88,8 @@ public class SpotifyReceiverService extends Service {
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
         this.unregisterReceiver(this.receiver);
+        super.onDestroy();
     }
 
     private void TTS(String trackName) {
