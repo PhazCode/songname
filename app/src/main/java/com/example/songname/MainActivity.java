@@ -1,10 +1,9 @@
 package com.example.songname;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.content.IntentFilter;
 import android.os.Bundle;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,6 +11,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Create an instance of our BroadcastReceiver
+        MyBroadcastReceiver receiver = new MyBroadcastReceiver();
+        IntentFilter providerChanged = new IntentFilter();
+        providerChanged.addAction("com.spotify.music.metadatachanged");
+        registerReceiver(receiver, providerChanged);
     }
 }
 
