@@ -18,7 +18,7 @@ import static com.example.songname.App.notificationChannelID;
 public class SpotifyReceiverService extends Service {
     static final String SPOTIFY_PACKAGE = "com.spotify.music";
     static final String ACTION = SPOTIFY_PACKAGE + ".metadatachanged";
-    private static final String EXTRA_MESSAGE = "com.example.songname.MESSAGE";
+    static final String EXTRA_MESSAGE = "com.example.songname.MESSAGE";
     private static final String ACTION_STOP_SERVICE = "com.example.songname.ACTION_STOP_SERVICE";
     private final int NOTIFICATION_ID = 1;
     private NotificationManager mNotificationManager;

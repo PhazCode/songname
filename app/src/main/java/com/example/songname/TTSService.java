@@ -10,8 +10,6 @@ import androidx.core.app.JobIntentService;
 
 import java.util.Locale;
 
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
-
 public class TTSService extends JobIntentService {
     private TextToSpeech mTextToSpeech = null;
     private boolean isSafeToDestroy = false;
@@ -22,7 +20,7 @@ public class TTSService extends JobIntentService {
 
     @Override
     protected void onHandleWork(@NonNull Intent intent) {
-        String message = intent.getStringExtra(EXTRA_MESSAGE);
+        String message = intent.getStringExtra(SpotifyReceiverService.EXTRA_MESSAGE);
 
         mTextToSpeech = new TextToSpeech(getApplicationContext(), status -> {
             mTextToSpeech.setLanguage(Locale.US);
