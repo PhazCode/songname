@@ -52,6 +52,7 @@ public class SpotifyReceiverService extends Service {
 
                     if (!trackName.equals(currentTrack)) {
                         currentTrack = trackName;
+                        trackName = trackName.split("[-(]", -1)[0];
 
                         boolean artist = prefs.getBoolean("artist", false);
                         if (artist)
@@ -87,7 +88,7 @@ public class SpotifyReceiverService extends Service {
 
     @Override
     public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
-        if (ACTION_STOP_SERVICE.equals(intent.getAction())) {
+        if (intent != null && intent.getAction() != null && ACTION_STOP_SERVICE.equals(intent.getAction())) {
             mNotificationManager.cancel(NOTIFICATION_ID);
             stopSelf();
             return START_NOT_STICKY;
