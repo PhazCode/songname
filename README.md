@@ -10,4 +10,4 @@ We provide an app for Android and an AppleScript for macOS.
 
 The Android app can be downloaded [here](https://github.com/PhazCode/songname/releases/latest/download/app-release.apk).
 
-macOS script will follow shortly.
+The macOS script will follow shortly.
