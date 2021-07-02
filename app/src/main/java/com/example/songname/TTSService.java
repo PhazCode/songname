@@ -8,30 +8,31 @@ import android.speech.tts.TextToSpeech;
 import androidx.annotation.NonNull;
 import androidx.core.app.JobIntentService;
 
+import java.util.Locale;
+
 public class TTSService extends JobIntentService {
-    private TextToSpeech mySpeakTextToSpeech = null;
+    private TextToSpeech mTextToSpeech = null;
     private boolean isSafeToDestroy = false;
 
-    // Unique job ID for this service.
-    private static int JOB_ID = 1;
-
     public static void enqueueWork(Context context, Intent intent) {
-        enqueueWork(context, TTSService.class, JOB_ID, intent);
+        enqueueWork(context, TTSService.class, 1, intent);
     }
 
     @Override
     protected void onHandleWork(@NonNull Intent intent) {
         String message = intent.getStringExtra("MESSAGE");
 
-        mySpeakTextToSpeech = new TextToSpeech(getApplicationContext(), status -> {
+        mTextToSpeech = new TextToSpeech(getApplicationContext(), status -> {
+            mTextToSpeech.setLanguage(Locale.US);
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                mySpeakTextToSpeech.speak(message, TextToSpeech.QUEUE_ADD, null, null);
+                mTextToSpeech.speak(message, TextToSpeech.QUEUE_ADD, null, null);
             } else {
-                mySpeakTextToSpeech.speak(message, TextToSpeech.QUEUE_ADD, null);
+                mTextToSpeech.speak(message, TextToSpeech.QUEUE_ADD, null);
             }
 
-            while (mySpeakTextToSpeech.isSpeaking()) {
-                // do nothing
+            while (mTextToSpeech.isSpeaking()) {
+                // wait for speaking to finish
             }
             isSafeToDestroy = true;
         });
@@ -40,8 +41,8 @@ public class TTSService extends JobIntentService {
     @Override
     public void onDestroy() {
         if (isSafeToDestroy) {
-            if (mySpeakTextToSpeech != null) {
-                mySpeakTextToSpeech.shutdown();
+            if (mTextToSpeech != null) {
+                mTextToSpeech.shutdown();
             }
             super.onDestroy();
         }

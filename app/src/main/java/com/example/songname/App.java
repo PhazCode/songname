@@ -16,7 +16,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.i(TAG, "Create App");
+        Log.i(TAG, "Creating Song.App");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
             createNotificationChannels();
@@ -26,8 +26,10 @@ public class App extends Application {
     public void createNotificationChannels() {
         try {
             final NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            NotificationChannel channel = new NotificationChannel(notificationChannelID, "App is running", NotificationManager.IMPORTANCE_HIGH);
-            channel.enableVibration(true);
+            NotificationChannel channel =
+                    new NotificationChannel(notificationChannelID,
+                            getString(R.string.listening),
+                            NotificationManager.IMPORTANCE_LOW);
             channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
             notificationManager.createNotificationChannel(channel);
         } catch (Exception e) {

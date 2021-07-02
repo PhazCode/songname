@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">songname</string>
+    <string name="app_name">SongToSpeech</string>
+    <string name="listening">Listen for song changes</string>
+    <string name="explanation">Now listening for Spotify song changes. Make sure to enable \'Device Broadcast Status\' from the Spotify settings.</string>
 </resources>
