@@ -7,11 +7,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.IBinder;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
+import androidx.preference.PreferenceManager;
 
 import static com.example.songname.App.notificationChannelID;
 
@@ -35,6 +37,8 @@ public class SpotifyReceiverService extends Service {
     public void onCreate() {
         super.onCreate();
 
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
         final IntentFilter filter = new IntentFilter();
         filter.addAction(ACTION);
         this.receiver = new BroadcastReceiver() {
@@ -44,10 +48,16 @@ public class SpotifyReceiverService extends Service {
 
                 if (action.equals(ACTION)) {
                     String trackName = intent.getStringExtra("track");
+                    String artistName = intent.getStringExtra("artist");
 
                     if (!trackName.equals(currentTrack)) {
                         currentTrack = trackName;
-                        TTS(String.format(getString(R.string.next_song), trackName));
+
+                        boolean artist = prefs.getBoolean("artist", false);
+                        if (artist)
+                            speak(String.format(getString(R.string.next_song), trackName));
+                        else
+                            speak(String.format(getString(R.string.next_song_by), trackName, artistName));
                     }
                 }
             }
@@ -92,9 +102,9 @@ public class SpotifyReceiverService extends Service {
         super.onDestroy();
     }
 
-    private void TTS(String trackName) {
+    private void speak(String message) {
         Intent speechIntent = new Intent();
-        speechIntent.putExtra(EXTRA_MESSAGE, trackName);
+        speechIntent.putExtra(EXTRA_MESSAGE, message);
         TTSService.enqueueWork(this, speechIntent);
     }
 }
