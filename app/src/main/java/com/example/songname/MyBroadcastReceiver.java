@@ -33,6 +33,9 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
             Log.d("trackname", trackName);
             Log.d("artist", artistName);
 
+            Intent speechIntent = new Intent();
+            speechIntent.putExtra("MESSAGE", trackName);
+            MySpeakService.enqueueWork(context, speechIntent);
         } else if (action.equals(BroadcastTypes.PLAYBACK_STATE_CHANGED)) {
             boolean playing = intent.getBooleanExtra("playing", false);
             int positionInMs = intent.getIntExtra("playbackPosition", 0);
